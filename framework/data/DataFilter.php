@@ -151,10 +151,10 @@ class DataFilter extends Model
      *
      * 任何未指定的关键字将不被识别为过滤器控件，同时都将被视为
      * 属性名。因此我们应该避免过滤器控件关键字和属性名称之间的冲突。
-     * 如: in case you have control keyword 'like' and an attribute named 'like', specifying condition
-     * for such attribute will be impossible.
+     * 如:我们指定了过滤器控件关键字'like'，同时也有一个属性叫做'like',类似于这种属性指定条件是
+     * 不会生效的。
      *
-     * You may specify several keywords for the same filter build key, creating multiple aliases. For example:
+     * 我们可以为同一个过滤器构建关键字指定一些关键字，创建多个别名。 例如:
      *
      * ```php
      * [
@@ -166,9 +166,9 @@ class DataFilter extends Model
      * ]
      * ```
      *
-     * > Note: while specifying filter controls take actual data exchange format, which your API uses, in mind.
-     * > Make sure each specified control keyword is valid for the format. For example, in XML tag name can start
-     * > only with a letter character, thus controls like `>`, '=' or `$gt` will break the XML schema.
+     * > 注意: 在指定过滤器控件时，请记住API使用的实际数据交换格式。
+     * > 确保每一个指定的控件关键字的格式是合法的。 如, 在XML标签名字中只能
+     * > 以字母字符开头, 因此，像 `>`, '=' 或者 `$gt` 控件将破坏XML模式规范。
      */
     public $filterControls = [
         'and' => 'AND',
@@ -185,8 +185,8 @@ class DataFilter extends Model
         'like' => 'LIKE',
     ];
     /**
-     * @var array maps filter condition keywords to validation methods.
-     * These methods are used by [[validateCondition()]] to validate raw filter conditions.
+     * @var array 过滤器条件关键字和校验方法的映射。
+     * 这些方法被 [[validateCondition()]]方法使用以校验原始过滤条件。
      */
     public $conditionValidators = [
         'AND' => 'validateConjunctionCondition',
@@ -203,7 +203,7 @@ class DataFilter extends Model
         'LIKE' => 'validateOperatorCondition',
     ];
     /**
-     * @var array specifies the list of supported search attribute types per each operator.
+     * @var array 指定每个操作符支持的搜索属性类型的列表。
      * This field should be in format: 'operatorKeyword' => ['type1', 'type2' ...].
      * Supported types list can be specified as `*`, which indicates that operator supports all types available.
      * Any unspecified keyword will not be considered as a valid operator.
